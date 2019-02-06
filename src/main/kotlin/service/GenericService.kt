@@ -18,7 +18,7 @@ class GenericService{
     val serviceUrl="http://localhost:7000/users"
     val loginUrl="http://localhost:8080/login"
 
-    inline fun delete(id:Int): GenericResponse<Any>{
+    fun delete(id:Int): GenericResponse<Any>{
         val (_,response,_) =
                 Fuel.delete("$serviceUrl/$id").response()
         return GenericResponse(response.statusCode, "", response.responseMessage)
