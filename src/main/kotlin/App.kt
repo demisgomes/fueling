@@ -1,4 +1,3 @@
-import com.github.kittinunf.fuel.Fuel
 import domain.User
 import domain.UserDTO
 import service.GenericResponse
@@ -43,7 +42,7 @@ fun main(args: Array<String>) {
     val putRequest = userService.put(postRequest.data.id, postRequest.data)
     printRequest("PUT", putRequest)
 
-    val deleteRequest = userService.delete<UserDTO>(putRequest.data.id)
+    val deleteRequest = userService.delete(putRequest.data.id)
     printRequest("DELETE",deleteRequest)
 
 

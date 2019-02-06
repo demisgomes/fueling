@@ -1,6 +1,7 @@
 package service
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.kittinunf.fuel.Fuel
 import com.github.kittinunf.fuel.core.FuelError
@@ -17,10 +18,10 @@ class GenericService{
     val serviceUrl="http://localhost:7000/users"
     val loginUrl="http://localhost:8080/login"
 
-    inline fun <reified T> delete(id:Int): GenericResponse<T>{
-        val (_,response,result) =
+    inline fun delete(id:Int): GenericResponse<Any>{
+        val (_,response,_) =
                 Fuel.delete("$serviceUrl/$id").response()
-        return responseHandler(response,result,"DELETE")
+        return GenericResponse(response.statusCode, "", response.responseMessage)
     }
 
 
